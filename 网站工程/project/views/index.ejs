@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <link rel="icon" href="../../favicon.ico">
+
+  <title>My News Website</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="/stylesheets/bootstrap.min.css" rel="stylesheet">
+
+  <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+  <!--<link href="../../assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet">-->
+
+  <!-- Custom styles for this template -->
+  <link href="/stylesheets/dashboard.css" rel="stylesheet">
+
+
+  <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
+  <!--[if lt IE 9]><!--<script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]&ndash;&gt;-->
+  <!--<script src="../../assets/js/ie-emulation-modes-warning.js"></script>-->
+
+  <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+  <!--[if lt IE 9]>
+  <!--<script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>-->
+  <!--<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>-->
+  <!--<![endif]&ndash;&gt;-->
+</head>
+
+
+<body>
+
+<nav class="navbar navbar-inverse navbar-fixed-top">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+
+
+        <% if(locals.islogin){%>
+      <a class="navbar-brand" href="/">Today's &nbsp;  News&nbsp;&nbsp;&nbsp;&nbsp;<%= time %>  &nbsp; &nbsp; 用户 <%= user %>, 欢迎您！
+
+      </a>
+        <%}else{%>
+      <a class="navbar-brand" href="/">Today's &nbsp; News&nbsp;&nbsp;&nbsp;&nbsp;<%= time %></a>
+
+        <%}%>
+
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="users/login">登录</a></li>
+        <li><a href="users/register">注册</a></li>
+
+          <% if(locals.islogin){%>
+        <li><a href="../setting">设置</a></li>
+          <%}%>
+
+      </ul>
+      <form class="navbar-form navbar-right">
+        <input type="text" class="form-control" placeholder="Search...">
+      </form>
+
+
+
+    </div>
+  </div>
+</nav>
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-sm-3 col-md-2 sidebar">
+      <ul class="nav nav-sidebar">
+
+        <% if(locals.islogin){%>
+          <% for(var i =0;i<typeitem.length;i++) {  %>
+
+         <% if( typeitem[i].newstype  == 'caijing' ){ %>
+          <%if (type == 0) { %>
+        <li  class="active" ><a href="caijing">财经 <span class="sr-only">(current)</span></a></li>
+          <% } else{ %>
+        <li  ><a href="caijing">财经 <span class="sr-only">(current)</span></a></li>
+          <% } %>
+          <% } %>
+
+          <% if( typeitem[i].newstype  == 'tiyu' ){ %>
+          <% if (type == 1) { %>
+        <li  class="active" ><a href="tiyu">体育 <span class="sr-only">(current)</span></a></li>
+          <% } else{ %>
+        <li  ><a href="tiyu">体育 <span class="sr-only">(current)</span></a></li>
+          <% } %>
+          <% } %>
+
+          <% if( typeitem[i].newstype  == 'yule' ){ %>
+          <% if (type == 2) { %>
+        <li  class="active" ><a href="yule">娱乐 <span class="sr-only">(current)</span></a></li>
+          <% } else{ %>
+        <li  ><a href="yule">娱乐 <span class="sr-only">(current)</span></a></li>
+          <% } %>
+          <% } %>
+
+          <% if( typeitem[i].newstype  == 'junshi' ){ %>
+          <% if (type == 3) { %>
+        <li  class="active" ><a href="junshi">军事 <span class="sr-only">(current)</span></a></li>
+          <% } else{ %>
+        <li  ><a href="junshi">军事 <span class="sr-only">(current)</span></a></li>
+          <% } %>
+          <% } %>
+
+          <% if( typeitem[i].newstype  == 'internet' ){ %>
+          <% if (type == 4) { %>
+        <li  class="active" ><a href="internet">互联网 <span class="sr-only">(current)</span></a></li>
+          <% } else{ %>
+        <li  ><a href="internet">互联网 <span class="sr-only">(current)</span></a></li>
+          <% } %>
+          <% } %>
+
+          <% if( typeitem[i].newstype  == 'women' ){ %>
+          <% if (type == 5) { %>
+        <li  class="active" ><a href="women">女人 <span class="sr-only">(current)</span></a></li>
+          <% } else{ %>
+        <li  ><a href="women">女人 <span class="sr-only">(current)</span></a></li>
+          <% } %>
+          <% } %>
+
+          <% if( typeitem[i].newstype  == 'game' ){ %>
+          <% if (type == 6) { %>
+        <li  class="active" ><a href="game">游戏 <span class="sr-only">(current)</span></a></li>
+          <% } else{ %>
+        <li  ><a href="game">游戏 <span class="sr-only">(current)</span></a></li>
+          <% } %>
+          <% } %>
+
+          <% if( typeitem[i].newstype  == 'car' ){ %>
+          <% if (type == 7) { %>
+        <li  class="active" ><a href="car">汽车 <span class="sr-only">(current)</span></a></li>
+          <% } else{ %>
+        <li  ><a href="car">汽车 <span class="sr-only">(current)</span></a></li>
+          <% } %>
+          <% } %>
+
+
+          <% } %>
+          <%}else{%>
+
+          <%if (type == 0) { %>
+        <li  class="active" ><a href="caijing">财经 <span class="sr-only">(current)</span></a></li>
+          <% } else{ %>
+        <li  ><a href="caijing">财经 <span class="sr-only">(current)</span></a></li>
+          <% } %>
+
+          <% if (type == 1) { %>
+        <li  class="active" ><a href="tiyu">体育 <span class="sr-only">(current)</span></a></li>
+          <% } else{ %>
+        <li  ><a href="tiyu">体育 <span class="sr-only">(current)</span></a></li>
+          <% } %>
+
+          <% if (type == 2) { %>
+        <li  class="active" ><a href="yule">娱乐 <span class="sr-only">(current)</span></a></li>
+          <% } else{ %>
+        <li  ><a href="yule">娱乐 <span class="sr-only">(current)</span></a></li>
+          <% } %>
+
+
+          <% if (type == 3) { %>
+        <li  class="active" ><a href="junshi">军事 <span class="sr-only">(current)</span></a></li>
+          <% } else{ %>
+        <li  ><a href="junshi">军事 <span class="sr-only">(current)</span></a></li>
+          <% } %>
+      </ul>
+
+      <ul class="nav nav-sidebar">
+          <% if (type == 4) { %>
+        <li  class="active" ><a href="internet">互联网 <span class="sr-only">(current)</span></a></li>
+          <% } else{ %>
+        <li  ><a href="internet">互联网 <span class="sr-only">(current)</span></a></li>
+          <% } %>
+
+          <% if (type == 5) { %>
+        <li  class="active" ><a href="women">女人 <span class="sr-only">(current)</span></a></li>
+          <% } else{ %>
+        <li  ><a href="women">女人 <span class="sr-only">(current)</span></a></li>
+          <% } %>
+
+          <% if (type == 6) { %>
+        <li  class="active" ><a href="game">游戏 <span class="sr-only">(current)</span></a></li>
+          <% } else{ %>
+        <li  ><a href="game">游戏 <span class="sr-only">(current)</span></a></li>
+          <% } %>
+
+          <% if (type == 7) { %>
+        <li  class="active" ><a href="car">汽车 <span class="sr-only">(current)</span></a></li>
+          <% } else{ %>
+        <li  ><a href="car">汽车 <span class="sr-only">(current)</span></a></li>
+          <% } %>
+
+
+        <% } %>
+
+        <% if (type == 8) { %>
+      <li  class="active" ><a href="tuijian">推荐 <span class="sr-only">(current)</span></a></li>
+        <% } else{ %>
+      <li  ><a href="tuijian">推荐 <span class="sr-only">(current)</span></a></li>
+        <% } %>
+
+      </ul>
+    </div>
+  </div>
+</div>
+
+
+
+    <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+
+        <!-- Indicators -->
+        <!--  <ol class="carousel-indicators">
+            <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+            <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+            <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+          </ol>
+        -->
+        <!-- Wrapper for slides -->
+
+        <div class="row "  >
+          <div class="col-xs-0 col-sm-2">
+        </div>
+          <div class="col-xs-12 col-sm-8">
+          <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+
+            <div class="carousel-inner" style="text-align:center">
+                <% if (type == 0 ||type == 3 || type == 6||type == 4 ){%>
+              <div class="item active"  >
+                <a href="http://money.163.com/photoview/0BGT0025/30926.html" title="揭秘富得流油的沙特王室:现有5千多王子"target="_blank"><img class="center-block" alt="揭秘富得流油的沙特王室:现有5千多王子" src="http://cms-bucket.nosdn.127.net/478c2afe39864023b7cf8b240cc0dcb320170622083435.jpeg" width = "100%" /></a>
+              </div>
+              <div class="item">
+                <a href="http://money.163.com/photoview/0BGT0025/30924.html" title="施华洛世奇女继承人结婚 婚纱镶50万颗水晶"target="_blank"><img  class="center-block" alt="施华洛世奇女继承人结婚 婚纱镶50万颗水晶"  src="http://cms-bucket.nosdn.127.net/c9ae534ebc5448dcb04e3c83accdb2d720170622083845.jpeg"width = "100%" /></a>
+              </div>
+              <div class="item">
+                <a href="http://money.163.com/photoview/0BGT0025/30927.html" title="高校毕业生“跳蚤市场”: 大爷大妈疯狂扫货"target="_blank"><img  class="center-block" alt="高校毕业生“跳蚤市场”: 大爷大妈疯狂扫货"  src="http://cms-bucket.nosdn.127.net/5106148037c84300975191e68785940e20170622083141.jpeg" width = "100%"/></a>
+              </div>
+                <% }else if (type == 1||type == 7 || type == 5){%>
+
+              <div class="item active"  >
+                <a href="http://sports.163.com/photoview/00C90005/155786.html" target="_blank"><img src="http://cms-bucket.nosdn.127.net/d1c7e4180ea044dbaefbd4302b94b35120170622073937.jpeg" height="100%" alt="C罗温情一幕:送球衣献吻残疾女孩"></a>
+              </div>
+              <div class="item">
+                  <a  href="http://sports.163.com/photoview/00C90005/155785.html" target="_blank"><img src="http://cms-bucket.nosdn.127.net/d01e6c4732574fc88480e0d084980a8420170622071505.jpeg" height="100%" alt="C罗头球创历史 葡萄牙1-0俄罗斯"></a>
+              </div>
+              <div class="item">
+               <a  href="http://sports.163.com/photoview/0B6P0005/155780.html" target="_blank"><img src="http://cms-bucket.nosdn.127.net/1efe311d76144e80b12a7c0cd2c3904a20170621205644.jpeg" height="100%" alt="17轮点球大战!上港惊险淘汰中乙队"></a>
+              </div>
+                <% }else if (type == 8||type == 2){%>
+
+              <div class="item active"  >
+                <a href="http://data.163.com/17/0622/12/CNHKB1BN000181IU.html" title="全世界人民都害怕失业，中国人对未来最乐观" ><img src="http://imgsize.ph.126.net/?imgurl=http://cms-bucket.nosdn.127.net/82eeccd7a5224cc1b9257728f503e4af20170622131206.jpeg_600x250x1x85.jpg"  alt="全世界人民都害怕失业，中国人对未来最乐观" /></a>
+              </div>
+              <div class="item">
+                <a href="http://tech.163.com/17/0622/08/CNH74MPG00097U7R.html">
+                  <img src="http://cms-bucket.nosdn.127.net/1d858362acde4d41b5ddfb58a4ddd7da20170622082643.jpeg" alt="双面卡兰尼克下台，打江山易坐江山太难">
+                </a>     </div>
+              <div class="item">
+                <a href="http://renjian.163.com/17/0621/17/CNFJVSIV000181RK.html" title="这哪是职业介绍所，完全就是黑社会" ><img src="http://imgsize.ph.126.net/?imgurl=http://cms-bucket.nosdn.127.net/58dea5a7bbc2499ea2e4e8a41ad6d5e420170621183426.jpeg_600x250x1x85.jpg"  alt="这哪是职业介绍所，完全就是黑社会" /></a>
+              </div>
+                <% }%>
+
+
+
+
+
+        <!-- Controls -->
+        <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
+          <span class="glyphicon glyphicon-chevron-left"><</span>
+        </a>
+        <a class="right carousel-control" href="#carousel-example-generic" data-slide="next">
+          <span class="glyphicon glyphicon-chevron-right">></span>
+        </a>
+
+      </div>
+        </div>
+        </div>
+        </div>
+      <script type="text/javascript">
+          $(document).ready(function () {
+              $('.carousel').carousel({
+                  interval: 2000
+              })
+          })
+      </script>
+
+
+
+
+
+    <div >
+
+        <% for(var i=0; i<items.length; i++) { %>
+
+
+      <div class="row "  >
+
+        <div class="col-xs-0 col-sm-2">
+        </div>
+        <div class="col-xs-12 col-sm-7">
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<li><a href=<%=items[i].newcontent %>  target="_blank" > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<%=items[i].title %></a>  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span class = "fr"><%=items[i].newstime %></span></li>
+        </div>
+      </div>
+
+            <% } %>
+    </div>
+    </div>
+  </div>
+</div>
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
+<script src="/javascripts/bootstrap.min.js"></script>
+<!-- Just to make our placeholder images work. Don't actually copy the next line! -->
+<!--<script src="../../assets/js/vendor/holder.min.js"></script>-->
+<!--&lt;!&ndash; IE10 viewport hack for Surface/desktop Windows 8 bug &ndash;&gt;-->
+<!--<script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>-->
+</body>
+</html>

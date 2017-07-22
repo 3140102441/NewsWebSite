@@ -1,0 +1,7 @@
+<span style="font-size:18px;"><?xml version="1.0" encoding="ISO-8859-1"?>
+    <test>
+        <title>news_title</title>
+        <time>news_time</time>
+        <url>news_url</url>
+    </test>
+</span>
